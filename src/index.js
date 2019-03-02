@@ -1,5 +1,8 @@
 
-export default (test, prodBrowsers, devBrowsers, extraPlugins=[])=> {
+// eslint-disable-next-line max-params
+export default (
+    test, nodeTarget, prodBrowsers, devBrowsers, extraPlugins=[]
+)=> {
   const config = {
     // Common to all envs below.
     plugins: [
@@ -25,7 +28,7 @@ export default (test, prodBrowsers, devBrowsers, extraPlugins=[])=> {
           ['@babel/preset-env', {
             useBuiltIns: 'usage',
             targets: {
-              node: 'current'
+              node: nodeTarget
             }
           }]
         ]
@@ -83,7 +86,7 @@ export default (test, prodBrowsers, devBrowsers, extraPlugins=[])=> {
       presets: [
         ['@babel/preset-env', {
           targets: {
-            node: 'current'
+            node: nodeTarget
           }
         }]
       ],
@@ -91,7 +94,7 @@ export default (test, prodBrowsers, devBrowsers, extraPlugins=[])=> {
         'transform-amd-to-commonjs',
         'dynamic-import-node'
       ]
-    }
+    };
   }
 
   return config;
