@@ -1,4 +1,35 @@
 
+const standardPlugins = [
+  // Makes sure babel does not include the same code snipped in each file,
+  // but imports helpers from a single module.
+  '@babel/plugin-syntax-dynamic-import',
+  '@babel/plugin-transform-runtime',
+  ['@babel/plugin-proposal-decorators', {legacy: true}],
+  '@babel/plugin-proposal-class-properties',
+  '@babel/plugin-proposal-numeric-separator',
+  '@babel/plugin-proposal-optional-catch-binding',
+  '@babel/plugin-proposal-throw-expressions'
+];
+
+const getExtraPlugins = (extraPlugins)=> {
+  const plugins = [];
+
+  for (const plugin of extraPlugins) {
+    if (!standardPlugins.some((standardPlugin)=> {
+      if (Array.isArray(standardPlugin)) {
+        return standardPlugin[0] === plugin;
+      }
+
+      return standardPlugin === plugin;
+    })) {
+      plugins.push(plugin);
+    }
+  }
+
+  return plugins;
+};
+
+
 // eslint-disable-next-line max-params
 export default (
     test, nodeTarget, prodBrowsers, devBrowsers, extraPlugins=[]
@@ -6,16 +37,8 @@ export default (
   const config = {
     // Common to all envs below.
     plugins: [
-      // Makes sure babel does not include the same code snipped in each file,
-      // but imports helpers from a single module.
-      '@babel/plugin-syntax-dynamic-import',
-      '@babel/plugin-transform-runtime',
-      ['@babel/plugin-proposal-decorators', {legacy: true}],
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-numeric-separator',
-      '@babel/plugin-proposal-optional-catch-binding',
-      '@babel/plugin-proposal-throw-expressions',
-      ...extraPlugins
+      ...standardPlugins,
+      ...getExtraPlugins(extraPlugins)
     ],
 
     presets: ['@babel/preset-react'],
