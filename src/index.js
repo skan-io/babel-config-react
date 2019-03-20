@@ -50,6 +50,7 @@ export default (
         presets: [
           ['@babel/preset-env', {
             useBuiltIns: 'usage',
+            corejs: 'core-js@3',
             targets: {
               node: nodeTarget
             }
@@ -65,6 +66,7 @@ export default (
           ['@babel/preset-env', {
             modules: false,
             useBuiltIns: 'entry',
+            corejs: 'core-js@3',
             targets: {
               browsers: devBrowsers
             }
@@ -79,6 +81,7 @@ export default (
           ['@babel/preset-env', {
             modules: false,
             useBuiltIns: 'entry',
+            corejs: 'core-js@3',
             targets: {
               browsers: prodBrowsers
             }
@@ -91,6 +94,7 @@ export default (
           ['@babel/preset-env', {
             modules: false,
             useBuiltIns: 'entry',
+            corejs: 'core-js@3',
             targets: {
               browsers: prodBrowsers
             }
