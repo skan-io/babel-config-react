@@ -8,7 +8,11 @@ const standardPlugins = [
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-numeric-separator',
   '@babel/plugin-proposal-optional-catch-binding',
-  '@babel/plugin-proposal-throw-expressions'
+  '@babel/plugin-proposal-throw-expressions',
+  '@babel/plugin-proposal-do-expressions',
+  '@babel/plugin-proposal-optional-chaining',
+  ['@babel/plugin-proposal-pipeline-operator', {proposal: 'minimal'}],
+  'babel-plugin-macros'
 ];
 
 const getExtraPlugins = (extraPlugins)=> {
